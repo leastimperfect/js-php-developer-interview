@@ -1,0 +1,14 @@
+{
+  "name": "test-2",
+  "version": "1.0.0",
+  "description": "",
+  "main": "question2.js",
+  "scripts": {
+    "start": "node ."
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "node-fetch": "^2.6.1"
+  }
+}
