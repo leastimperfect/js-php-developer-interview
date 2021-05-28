@@ -7,28 +7,34 @@
  */
 
 // Documentation: https://www.npmjs.com/package/node-fetch
-const fetch = require('node-fetch');
+const fetch = require("node-fetch");
 
-const postal = ['059108', '139651'];
+const postal = ["059108", "139651"];
 
 const expected = [3, 71];
 
 /**
  * Return a promise that resolves with the number of results found for the postal code.
- * @param {string} postal_code 
- * @returns {Promise<string|number>} 
+ * @param {string} postal_code
+ * @returns {Promise<string|number>}
  */
 function searchByPostalCode(postal_code) {
-
-	// Your code here...
-
+  // Your code here...
+  return new Promise((resolve, reject) => {
+    fetch(
+      `https://developers.onemap.sg/commonapi/search?searchVal=${postal_code}&returnGeom=N&getAddrDetails=N`
+    )
+      .then((res) => res.json())
+      .then((json) => {
+        resolve(json["found"]);
+      });
+  });
 }
 
-Promise
-	.all(postal.map(searchByPostalCode))
-	.then(observed => {
-		console.log('Question 2 Case 1 passed:');
-		console.log(observed[0] == expected[0]);
-		console.log('Question 2 Case 2 passed:');
-		console.log(observed[1] == expected[1]);
-	});
+Promise.all(postal.map(searchByPostalCode)).then((observed) => {
+  console.log(observed);
+  console.log("Question 2 Case 1 passed:");
+  console.log(observed[0] == expected[0]);
+  console.log("Question 2 Case 2 passed:");
+  console.log(observed[1] == expected[1]);
+});
