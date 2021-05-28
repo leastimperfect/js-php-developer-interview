@@ -15,13 +15,15 @@ const expected = [3, 71];
 
 /**
  * Return a promise that resolves with the number of results found for the postal code.
- * @param {string} postal_code 
- * @returns {Promise<string|number>} 
+ * @param {string} postal_code
+ * @returns {Promise<string|number>}
  */
 function searchByPostalCode(postal_code) {
-
 	// Your code here...
-
+	const url = 'https://developers.onemap.sg/commonapi/search?searchVal=' + postal_code + '&returnGeom=Y&getAddrDetails=Y&pageNum=1';
+	return fetch(url)
+	.then(res => res.json())
+	.then(data => data.found);
 }
 
 Promise
