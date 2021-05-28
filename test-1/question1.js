@@ -29,6 +29,20 @@ var expected = [
 function question1() {
   observed = [];
   //FIXME: Your code goes here
+  for (i = 1; i < 101; i++){
+    if ((i % 3 == 0) && (i % 5 == 0)) {
+      observed.push('FizzBuzz');
+    }
+    else if (i % 3 == 0) {
+      observed.push('Fizz');
+    }
+    else if (i % 5 == 0) {
+      observed.push('Buzz');
+    }
+    else{
+      observed.push(i);
+    }
+  }
   return observed;
 }
 
